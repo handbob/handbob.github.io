@@ -1,2 +1,2 @@
 # handbob.github.io
-React & JavaScript website.
+React, JavaScript website.
