@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './styles/App.css'
 
-export default function App() {
+function App() {
   const [count, setCount] = useState(0);
   const [rnd, setRnd] = useState(0);
 
@@ -33,5 +33,7 @@ export default function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
+
+export default App;
