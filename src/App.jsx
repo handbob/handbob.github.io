@@ -7,7 +7,7 @@ import Hangman from './components/Hangman'
 import Cards from './components/Cards'
 import Navbar from './components/Navbar'
 
-function App() {
+export default function App() {
   return (
     <Router>
       <Navbar />
@@ -21,5 +21,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;
