@@ -9,4 +9,4 @@ const TicTacToe = () => {
   );
 };
 
-export default TicTacToe;
+export { TicTacToe };

@@ -9,4 +9,4 @@ const Chess = () => {
   );
 };
 
-export default Chess;
+export { Chess };
