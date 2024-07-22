@@ -7,27 +7,27 @@
 * [Vitest](https://vitest.dev)
 
 #### Unit tests
-* Windows, MacOS/Linux
+* Windows, macOS/Linux
 ```
 npm run test
 ```
 #### Run development application
-* Windows, MacOS/Linux
+* Windows, macOS/Linux
 ```
 npm run dev
 ```
 #### Build application
-* Windows, MacOS/Linux
+* Windows, macOS/Linux
 ```
 npm run build
 ```
 #### Run production application
-* Windows, MacOS/Linux
+* Windows, macOS/Linux
 ```
 npm run preview
 ```
 #### Deploy application
-* Windows, MacOS/Linux
+* Windows, macOS/Linux
 ```
 npm run deploy
 ```
