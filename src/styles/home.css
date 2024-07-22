@@ -1,0 +1,141 @@
+body.light {
+    background-color: #f4f4f9;
+    color: #333333;
+}
+
+body.dark {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.home {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.home.light {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.home.dark {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    transition: color 0.3s;
+}
+
+.game-blocks {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.game-block {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    background-color: #ececec;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    margin: 0.5rem;
+}
+
+.game-block.light {
+    background-color: #ececec;
+    color: #333333;
+}
+
+.game-block.dark {
+    background-color: #555555;
+    color: #ffffff;
+}
+
+.game-block:hover {
+    transform: scale(1.05);
+}
+
+.game-block.light:hover {
+    background-color: #d4d4d4;
+}
+
+.game-block.dark:hover {
+    background-color: #777777;
+}
+
+.game-block a {
+    text-decoration: none;
+    font-size: 1.25rem;
+    transition: color 0.3s;
+}
+
+.game-block.light a {
+    color: #333333;
+}
+
+.game-block.dark a {
+    color: #ffffff;
+}
+
+.game-block a:hover.light {
+    color: #007bff;
+}
+
+.game-block a:hover.dark {
+    color: #80bfff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar.light {
+    background-color: #ffffff;
+    color: #333;
+}
+
+.navbar.dark {
+    background-color: #333;
+    color: #ffffff;
+}
+
+.navbar a {
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1.2rem;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.navbar.light a {
+    color: #333;
+}
+
+.navbar.dark a {
+    color: #ffffff;
+}
+
+.navbar a:hover {
+    border-bottom: 2px solid #007bff;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1rem;
+}
