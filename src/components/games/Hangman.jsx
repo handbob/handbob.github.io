@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import '../../styles/games/hangman.css'
+import '../../styles/games/hangman.css';
 
 const Hangman = () => {
   const words = ['react', 'javascript', 'programming', 'hangman', 'developer'];
-  const [word] = useState(words[Math.floor(Math.random() * words.length)]);
+  const [word, setWord] = useState(words[Math.floor(Math.random() * words.length)]);
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState(0);
 
@@ -33,11 +33,18 @@ const Hangman = () => {
       <button
         key={letter}
         onClick={() => handleGuess(letter)}
-        disabled={guessedLetters.includes(letter)}
+        disabled={guessedLetters.includes(letter) || isGameOver || isWinner}
+        className="letter-button"
       >
         {letter}
       </button>
     ));
+  };
+
+  const resetGame = () => {
+    setWord(words[Math.floor(Math.random() * words.length)]);
+    setGuessedLetters([]);
+    setWrongGuesses(0);
   };
 
   const isWinner = word.split('').every((letter) => guessedLetters.includes(letter));
@@ -51,7 +58,17 @@ const Hangman = () => {
       <div className="status">
         {isWinner && <p>Congratulations! You've won!</p>}
         {isGameOver && <p>Game Over! The word was "{word}".</p>}
-        <p>Wrong guesses: {wrongGuesses}</p>
+        <p>Wrong guesses: {wrongGuesses} / {maxWrongGuesses}</p>
+      </div>
+      {(isWinner || isGameOver) && (
+        <button className="play-again-button" onClick={resetGame}>
+          Play Again
+        </button>
+      )}
+      <div className="hangman-figure">
+        {[...Array(wrongGuesses)].map((_, i) => (
+          <div key={i} className={`part part-${i + 1}`}></div>
+        ))}
       </div>
     </div>
   );
