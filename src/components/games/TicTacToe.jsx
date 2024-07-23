@@ -33,7 +33,7 @@ const Board = ({ squares, onClick, size }) => {
 };
 
 const TicTacToe = () => {
-  const [size, setSize] = useState(3);
+  const [size, setSize] = useState(10);
   const [history, setHistory] = useState([Array(size * size).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
@@ -87,8 +87,8 @@ const TicTacToe = () => {
           Board size:
           <input
             type="number"
-            min="3"
-            max="10"
+            min="5"
+            max="20"
             value={size}
             onChange={handleSizeChange}
           />
@@ -109,32 +109,40 @@ const calculateWinner = (squares, size) => {
   const lines = [];
 
   // Rows
-  for (let i = 0; i < size; i++) {
-    const row = [];
-    for (let j = 0; j < size; j++) {
-      row.push(i * size + j);
+  for (let row = 0; row < size; row++) {
+    for (let col = 0; col < size - 4; col++) {
+      const line = [];
+      for (let k = 0; k < 5; k++) {
+        line.push(row * size + col + k);
+      }
+      lines.push(line);
     }
-    lines.push(row);
   }
 
   // Columns
-  for (let i = 0; i < size; i++) {
-    const col = [];
-    for (let j = 0; j < size; j++) {
-      col.push(j * size + i);
+  for (let col = 0; col < size; col++) {
+    for (let row = 0; row < size - 4; row++) {
+      const line = [];
+      for (let k = 0; k < 5; k++) {
+        line.push((row + k) * size + col);
+      }
+      lines.push(line);
     }
-    lines.push(col);
   }
 
   // Diagonals
-  const diag1 = [];
-  const diag2 = [];
-  for (let i = 0; i < size; i++) {
-    diag1.push(i * size + i);
-    diag2.push(i * size + (size - i - 1));
+  for (let row = 0; row < size - 4; row++) {
+    for (let col = 0; col < size - 4; col++) {
+      const diag1 = [];
+      const diag2 = [];
+      for (let k = 0; k < 5; k++) {
+        diag1.push((row + k) * size + (col + k));
+        diag2.push((row + k) * size + (col + 4 - k));
+      }
+      lines.push(diag1);
+      lines.push(diag2);
+    }
   }
-  lines.push(diag1);
-  lines.push(diag2);
 
   for (let i = 0; i < lines.length; i++) {
     const [a, ...rest] = lines[i];

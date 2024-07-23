@@ -5,73 +5,73 @@
     flex-direction: column;
     align-items: center;
     margin: 2rem;
-}
-
-.game-settings {
+  }
+  
+  .game-settings {
     margin-bottom: 1rem;
-}
-
-.game-settings label {
+  }
+  
+  .game-settings label {
     font-size: 1.2rem;
     margin-right: 1rem;
-}
-
-.game-settings input {
+  }
+  
+  .game-settings input {
     font-size: 1.2rem;
     width: 50px;
     text-align: center;
-}
-
-.game-board {
+  }
+  
+  .game-board {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 1rem;
-}
-
-.board-row {
+  }
+  
+  .board-row {
     display: flex;
-}
-
-.square {
-    width: 50px;
-    height: 50px;
+  }
+  
+  .square {
+    width: 40px;
+    height: 40px;
     background-color: #fff;
     border: 2px solid #1e90ff;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.square:hover {
+  }
+  
+  .square:hover {
     background-color: #f0f8ff;
-}
-
-.square:focus {
+  }
+  
+  .square:focus {
     outline: none;
-}
-
-.game-info {
+  }
+  
+  .game-info {
     margin-top: 1rem;
-}
-
-.game-info div {
+  }
+  
+  .game-info div {
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
-}
-
-.game-info ol {
+  }
+  
+  .game-info ol {
     padding-left: 1.5rem;
-}
-
-.game-info ol li {
+  }
+  
+  .game-info ol li {
     margin-bottom: 0.5rem;
-}
-
-.game-info button {
+  }
+  
+  .game-info button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -80,12 +80,13 @@
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.game-info button:hover {
+  }
+  
+  .game-info button:hover {
     background-color: #0056b3;
-}
-
-.game-info button:focus {
+  }
+  
+  .game-info button:focus {
     outline: none;
-}
+  }
+  
