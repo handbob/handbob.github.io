@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import '../../styles/chess.css'
+import '../../styles/games/chess.css'
 
 const initialBoard = [
   ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],

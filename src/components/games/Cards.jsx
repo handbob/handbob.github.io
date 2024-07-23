@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import '../../styles/cards.css'
+import '../../styles/games/cards.css'
 
 const generateDeck = () => {
   const suits = ['hearts', 'diamonds', 'clubs', 'spades'];

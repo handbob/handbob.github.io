@@ -1,0 +1,30 @@
+.theme-toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.theme-toggle-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-toggle-button img {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
+
+.theme-toggle-button:hover {
+    opacity: 0.8;
+}

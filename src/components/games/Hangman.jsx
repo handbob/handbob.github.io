@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import '../../styles/hangman.css'
+import '../../styles/games/hangman.css'
 
 const Hangman = () => {
   const words = ['react', 'javascript', 'programming', 'hangman', 'developer'];
