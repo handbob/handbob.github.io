@@ -5,39 +5,39 @@
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    background-color: #f4f4f4;
+    background-color: #e9ecef;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
-  }
-  
-  h1 {
+}
+
+h1 {
     font-size: 2.5rem;
-    color: #333;
+    color: #495057;
     margin-bottom: 1rem;
-  }
-  
-  .word {
+}
+
+.word {
     display: flex;
     justify-content: center;
     margin-bottom: 1.5rem;
-  }
-  
-  .letter {
+}
+
+.letter {
     font-size: 2rem;
     margin: 0 0.5rem;
     padding: 0.25rem;
-    border-bottom: 2px solid #333;
-  }
-  
-  .buttons {
+    border-bottom: 2px solid #495057;
+}
+
+.buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 1rem;
-  }
-  
-  .letter-button {
+}
+
+.letter-button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -47,89 +47,116 @@
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .letter-button:disabled {
-    background-color: #ccc;
+}
+
+.letter-button:disabled {
+    background-color: #6c757d;
     cursor: not-allowed;
-  }
-  
-  .letter-button:hover:not(:disabled) {
+}
+
+.letter-button:hover:not(:disabled) {
     background-color: #0056b3;
     transform: scale(1.05);
-  }
-  
-  .status {
+}
+
+.status {
     font-size: 1.2rem;
-    color: #333;
+    color: #495057;
     margin-top: 1rem;
     text-align: center;
-  }
-  
-  .hangman-figure {
+}
+
+.hangman-figure {
     margin-top: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 200px;
+    width: 120px;
     height: 200px;
-  }
-  
-  .part {
-    background-color: #333;
+}
+
+.part {
+    background-color: #000;
     position: absolute;
-  }
-  
-  .part-1 {
-    width: 5px;
-    height: 50px;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .part-2 {
-    width: 50px;
+}
+
+.part-base {
+    width: 100px;
     height: 5px;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .part-3 {
+    bottom: 0;
+    left: 10px; /* Adjusted to match the image */
+}
+
+.part-pole {
     width: 5px;
     height: 150px;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .part-4 {
-    width: 50px;
+    bottom: 5px;
+    left: 10px; /* Adjusted to match the image */
+}
+
+.part-arm {
+    width: 70px;
     height: 5px;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .part-5 {
+    left: 10px; /* Adjusted to match the image */
+}
+
+.part-rope {
+    width: 5px;
+    height: 30px;
+    top: 0;
+    left: 75px; /* Adjusted to match the image */
+}
+
+.part-head {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 30px;
+    left: 60px; /* Adjusted to match the image */
+}
+
+.part-body {
     width: 5px;
     height: 50px;
-    top: 0;
-    right: 50%;
-    transform: translateX(50%);
-  }
-  
-  .part-6 {
-    width: 50px;
+    top: 60px;
+    left: 75px; /* Adjusted to match the image */
+}
+
+.part-arm-left {
+    width: 30px;
     height: 5px;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .play-again-button {
+    top: 80px;
+    left: 45px;
+    transform: rotate(-45deg);
+}
+
+.part-arm-right {
+    width: 30px;
+    height: 5px;
+    top: 80px;
+    left: 75px;
+    transform: rotate(45deg);
+}
+
+.part-leg-left {
+    width: 30px;
+    height: 5px;
+    top: 110px;
+    left: 45px;
+    transform: rotate(-45deg);
+}
+
+.part-leg-right {
+    width: 30px;
+    height: 5px;
+    top: 110px;
+    left: 75px;
+    transform: rotate(45deg);
+}
+
+.play-again-button {
     background-color: #28a745;
     color: white;
     border: none;
@@ -139,10 +166,9 @@
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .play-again-button:hover {
+}
+
+.play-again-button:hover {
     background-color: #218838;
     transform: scale(1.05);
-  }
-  
+}

@@ -8,7 +8,7 @@ const Hangman = () => {
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState(0);
 
-  const maxWrongGuesses = 6;
+  const maxWrongGuesses = 10;
 
   const handleGuess = (letter) => {
     if (!guessedLetters.includes(letter)) {
@@ -66,9 +66,16 @@ const Hangman = () => {
         </button>
       )}
       <div className="hangman-figure">
-        {[...Array(wrongGuesses)].map((_, i) => (
-          <div key={i} className={`part part-${i + 1}`}></div>
-        ))}
+        {wrongGuesses > 0 && <div className="part part-base"></div>}
+        {wrongGuesses > 1 && <div className="part part-pole"></div>}
+        {wrongGuesses > 2 && <div className="part part-arm"></div>}
+        {wrongGuesses > 3 && <div className="part part-rope"></div>}
+        {wrongGuesses > 4 && <div className="part part-head"></div>}
+        {wrongGuesses > 5 && <div className="part part-body"></div>}
+        {wrongGuesses > 6 && <div className="part part-arm-left"></div>}
+        {wrongGuesses > 7 && <div className="part part-arm-right"></div>}
+        {wrongGuesses > 8 && <div className="part part-leg-left"></div>}
+        {wrongGuesses > 9 && <div className="part part-leg-right"></div>}
       </div>
     </div>
   );
