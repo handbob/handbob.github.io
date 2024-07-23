@@ -8,39 +8,38 @@ const Square = ({ value, onClick }) => (
   </button>
 );
 
-const Board = ({ squares, onClick }) => {
+const Board = ({ squares, onClick, size }) => {
   const renderSquare = (i) => (
     <Square value={squares[i]} onClick={() => onClick(i)} />
   );
 
-  return (
-    <div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
-    </div>
-  );
+  const renderBoard = () => {
+    let board = [];
+    for (let row = 0; row < size; row++) {
+      let boardRow = [];
+      for (let col = 0; col < size; col++) {
+        boardRow.push(renderSquare(row * size + col));
+      }
+      board.push(
+        <div key={row} className="board-row">
+          {boardRow}
+        </div>
+      );
+    }
+    return board;
+  };
+
+  return <div>{renderBoard()}</div>;
 };
 
 const TicTacToe = () => {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [size, setSize] = useState(3);
+  const [history, setHistory] = useState([Array(size * size).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
 
   const current = history[stepNumber];
-  const winner = calculateWinner(current);
+  const winner = calculateWinner(current, size);
 
   const handleClick = (i) => {
     const historyCopy = history.slice(0, stepNumber + 1);
@@ -55,6 +54,14 @@ const TicTacToe = () => {
   const jumpTo = (step) => {
     setStepNumber(step);
     setXIsNext(step % 2 === 0);
+  };
+
+  const handleSizeChange = (event) => {
+    const newSize = parseInt(event.target.value);
+    setSize(newSize);
+    setHistory([Array(newSize * newSize).fill(null)]);
+    setStepNumber(0);
+    setXIsNext(true);
   };
 
   const moves = history.map((step, move) => {
@@ -75,8 +82,20 @@ const TicTacToe = () => {
 
   return (
     <div className="game">
+      <div className="game-settings">
+        <label>
+          Board size:
+          <input
+            type="number"
+            min="3"
+            max="10"
+            value={size}
+            onChange={handleSizeChange}
+          />
+        </label>
+      </div>
       <div className="game-board">
-        <Board squares={current} onClick={handleClick} />
+        <Board squares={current} onClick={handleClick} size={size} />
       </div>
       <div className="game-info">
         <div>{status}</div>
@@ -86,23 +105,44 @@ const TicTacToe = () => {
   );
 };
 
-const calculateWinner = (squares) => {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
+const calculateWinner = (squares, size) => {
+  const lines = [];
+
+  // Rows
+  for (let i = 0; i < size; i++) {
+    const row = [];
+    for (let j = 0; j < size; j++) {
+      row.push(i * size + j);
+    }
+    lines.push(row);
+  }
+
+  // Columns
+  for (let i = 0; i < size; i++) {
+    const col = [];
+    for (let j = 0; j < size; j++) {
+      col.push(j * size + i);
+    }
+    lines.push(col);
+  }
+
+  // Diagonals
+  const diag1 = [];
+  const diag2 = [];
+  for (let i = 0; i < size; i++) {
+    diag1.push(i * size + i);
+    diag2.push(i * size + (size - i - 1));
+  }
+  lines.push(diag1);
+  lines.push(diag2);
+
   for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+    const [a, ...rest] = lines[i];
+    if (squares[a] && rest.every(index => squares[index] === squares[a])) {
       return squares[a];
     }
   }
+
   return null;
 };
 
