@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTheme } from './ThemeContext';
-import themeIcon from '../assets/theme-icon.svg';
+import darkThemeIcon from '../assets/dark-theme-icon.svg';
+import lightThemeIcon from '../assets/light-theme-icon.svg';
 import '../styles/themetogglebutton.css';
 
 const ThemeToggleButton = () => {
@@ -9,8 +10,7 @@ const ThemeToggleButton = () => {
     return (
         <div className="theme-toggle-container">
             <button className="theme-toggle-button" onClick={toggleTheme}>
-                <img src={themeIcon} alt="Toggle Theme" />
-                {theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+                <img src={theme === 'light' ? darkThemeIcon : lightThemeIcon} alt="Toggle Theme" />
             </button>
         </div>
     );
