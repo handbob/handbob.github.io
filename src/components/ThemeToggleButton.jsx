@@ -1,8 +1,8 @@
-import React from 'react';
-import { useTheme } from './ThemeContext';
-import darkThemeIcon from '../assets/dark-theme-icon.svg';
-import lightThemeIcon from '../assets/light-theme-icon.svg';
-import '../styles/themetogglebutton.css';
+import React from 'react'
+import { useTheme } from './ThemeContext'
+import darkThemeIcon from '../assets/dark-theme-icon.svg'
+import lightThemeIcon from '../assets/light-theme-icon.svg'
+import '../styles/themetogglebutton.css'
 
 const ThemeToggleButton = () => {
     const { theme, toggleTheme } = useTheme();

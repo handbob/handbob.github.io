@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import '../../styles/games/tictactoe.css';
+import '../../styles/games/tictactoe.css'
 
 const Square = ({ value, onClick }) => (
   <button className="square" onClick={onClick}>

@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import { NavBar } from './components/NavBar';
-import { Home } from './components/Home';
-import { ThemeProvider } from './components/ThemeContext';
-import { TicTacToe } from './components/games/TicTacToe';
-import { Chess } from './components/games/Chess';
-import { Hangman } from './components/games/Hangman';
-import { Cards } from './components/games/Cards';
+import { NavBar } from './components/NavBar'
+import { Home } from './components/Home'
+import { ThemeProvider } from './components/ThemeContext'
+import { TicTacToe } from './components/games/TicTacToe'
+import { Chess } from './components/games/Chess'
+import { Hangman } from './components/games/Hangman'
+import { Cards } from './components/games/Cards'
 
 const App = () => {
     return (

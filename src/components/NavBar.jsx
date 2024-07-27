@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ThemeToggleButton } from './ThemeToggleButton';
-import '../styles/navbar.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { ThemeToggleButton } from './ThemeToggleButton'
+import '../styles/navbar.css'
 
 const NavBar = () => {
   return (
