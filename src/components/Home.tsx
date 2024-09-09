@@ -198,7 +198,7 @@ const Home: React.FC = () => {
         <div className="container">
           <h3>Get in Touch</h3>
           <p>Have questions? Want to contribute? Connect with us!</p>
-          <p>Email: support@mail.com | Join our <a href="https://discord.com/byfusion" className="text-decoration-none">Discord Community</a></p>
+          <p>Email: support@mail.com | Join our <a href="https://discord.com" className="text-decoration-none">Discord Community</a></p>
           <div className="social-links">
             <a href="https://github.com/handbob" className="social-link" aria-label="GitHub"><i className="bi bi-github"></i></a>
             <a href="https://www.instagram.com" className="social-link" aria-label="Instagram"><i className="bi bi-instagram"></i></a>
