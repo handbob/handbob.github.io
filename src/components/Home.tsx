@@ -165,13 +165,6 @@ const Home: React.FC = () => {
             </div>
             <div className="col-lg-3 col-md-6 mb-4">
               <div className="project-placeholder">
-                <img src="https://via.placeholder.com/300x200" alt="AlgoHub project" className="img-fluid" />
-                <div className="project-coming-soon-overlay">Coming Soon</div>
-                <p>AlgoHub</p>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 mb-4">
-              <div className="project-placeholder">
                 <img src="https://via.placeholder.com/300x200" alt="PyBioVariant project" className="img-fluid" />
                 <div className="project-coming-soon-overlay">Coming Soon</div>
                 <p>PyBioVariant</p>
