@@ -204,7 +204,7 @@ const Home: React.FC = () => {
         <div className="container text-center">
           <h2 className="mb-4">Issue Tracker</h2>
           <p>Found a bug or have a feature request? Let us know!</p>
-          <a href="https://github.com/fusionby/issues" className="btn btn-outline-light mt-3">Report an Issue</a>
+          <a href="https://github.com/handbob/issues" className="btn btn-outline-light mt-3">Report an Issue</a>
         </div>
       </section>
 
