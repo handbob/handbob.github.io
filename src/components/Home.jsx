@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-const ThreeBackground: React.FC = () => {
-  const mountRef = useRef<HTMLDivElement>(null);
+const ThreeBackground = () => {
+  const mountRef = useRef(null);
 
   useEffect(() => {
     const currentMount = mountRef.current;
@@ -16,7 +16,7 @@ const ThreeBackground: React.FC = () => {
     currentMount.appendChild(renderer.domElement);
 
     const geometry = new THREE.BufferGeometry();
-    const vertices: number[] = [];
+    const vertices = [];
 
     for (let i = 0; i < 10000; i++) {
       vertices.push(THREE.MathUtils.randFloatSpread(2000));
@@ -58,7 +58,7 @@ const ThreeBackground: React.FC = () => {
   return <div ref={mountRef} className="three-background"></div>;
 };
 
-const Home: React.FC = () => {
+const Home = () => {
   return (
     <div className="home-container">
       <ThreeBackground />
