@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import React, { useEffect, useRef } from 'react'
+import * as THREE from 'three'
 
 const ThreeBackground: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -156,6 +156,27 @@ const Home: React.FC = () => {
                 <p>PyFolderSync</p>
               </div>
             </div>
+            <div className="col-lg-3 col-md-6 mb-4">
+              <div className="project-placeholder">
+                <img src="https://via.placeholder.com/300x200" alt="AutoLab project" className="img-fluid" />
+                <div className="project-coming-soon-overlay">Coming Soon</div>
+                <p>TestAutoLab</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 mb-4">
+              <div className="project-placeholder">
+                <img src="https://via.placeholder.com/300x200" alt="PyBioVariant project" className="img-fluid" />
+                <div className="project-coming-soon-overlay">Coming Soon</div>
+                <p>PyBioVariant</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 mb-4">
+              <div className="project-placeholder">
+                <img src="https://via.placeholder.com/300x200" alt="PyBioVariant project" className="img-fluid" />
+                <div className="project-coming-soon-overlay">Coming Soon</div>
+                <p>Evidence</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -190,7 +211,7 @@ const Home: React.FC = () => {
         <div className="container text-center">
           <h2 className="mb-4">Issue Tracker</h2>
           <p>Found a bug or have a feature request? Let us know!</p>
-          <a href="https://github.com/fusionby/issues" className="btn btn-outline-light mt-3">Report an Issue</a>
+          <a href="https://github.com/handbob/issues" className="btn btn-outline-light mt-3">Report an Issue</a>
         </div>
       </section>
 
