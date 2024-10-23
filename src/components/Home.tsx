@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import React, { useEffect, useRef } from 'react';
+import * as THREE from 'three';
 
 const ThreeBackground = () => {
-  const mountRef = useRef(null);
+  const mountRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     const currentMount = mountRef.current;
@@ -16,7 +17,7 @@ const ThreeBackground = () => {
     currentMount.appendChild(renderer.domElement);
 
     const geometry = new THREE.BufferGeometry();
-    const vertices = [];
+    const vertices: number[] = [];
 
     for (let i = 0; i < 10000; i++) {
       vertices.push(THREE.MathUtils.randFloatSpread(2000));

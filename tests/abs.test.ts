@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest'
+import { test, expect } from 'vitest';
 
 const abs = (n) => {
     if (n < 0)
