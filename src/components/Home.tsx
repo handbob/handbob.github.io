@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import React, { useEffect, useRef } from 'react'
+import * as THREE from 'three'
 
 const ThreeBackground = () => {
   const mountRef = useRef<HTMLDivElement>(null);
-
 
   useEffect(() => {
     const currentMount = mountRef.current;

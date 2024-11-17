@@ -5,11 +5,17 @@
 * [React](https://react.dev)   
 * [Vite](https://vitejs.dev)
 * [Vitest](https://vitest.dev)
+* [Playwright](https://playwright.dev)
 
-#### Unit tests
+#### Unit testing
 * Windows, macOS/Linux
 ```
-npm run test
+npm run test:unit
+```
+#### E2E testing
+* Windows, macOS/Linux
+```
+npm run test:e2e
 ```
 #### Run development application
 * Windows, macOS/Linux
