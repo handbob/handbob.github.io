@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 const ThreeBackground = () => {
-  const mountRef = useRef<HTMLDivElement>(null);
+  const mountRef = useRef();
 
   useEffect(() => {
     const currentMount = mountRef.current;
@@ -16,7 +16,7 @@ const ThreeBackground = () => {
     currentMount.appendChild(renderer.domElement);
 
     const geometry = new THREE.BufferGeometry();
-    const vertices: number[] = [];
+    const vertices = [];
 
     for (let i = 0; i < 10000; i++) {
       vertices.push(THREE.MathUtils.randFloatSpread(2000));
@@ -24,7 +24,7 @@ const ThreeBackground = () => {
       vertices.push(THREE.MathUtils.randFloatSpread(2000));
     }
 
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
 
     const material = new THREE.PointsMaterial({ color: 0x888888 });
     const particles = new THREE.Points(geometry, material);
@@ -47,10 +47,10 @@ const ThreeBackground = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
-    window.addEventListener('resize', onWindowResize);
+    window.addEventListener("resize", onWindowResize);
 
     return () => {
-      window.removeEventListener('resize', onWindowResize);
+      window.removeEventListener("resize", onWindowResize);
       currentMount.removeChild(renderer.domElement);
     };
   }, []);
@@ -90,7 +90,7 @@ const Home = () => {
       <header id="home" className="home-header text-center">
         <div className="container">
           <h1>handbob.github.io</h1>
-          <p>Your one-stop destination for all things development. Whether you're a game developer, AI enthusiast, or web wizard, you'll find the resources and community you need to succeed.</p>
+          <p>Your one-stop destination for all things development. Whether you"re a game developer, AI enthusiast, or web wizard, you"ll find the resources and community you need to succeed.</p>
           <a href="#services" className="btn btn-outline-light mt-3">Explore Resources</a>
         </div>
       </header>
