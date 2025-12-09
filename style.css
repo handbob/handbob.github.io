@@ -1,15 +1,15 @@
 :root {
-    --bg-color: #f0f8ff;
-    --math-color: #4facfe;
-    --czech-color: #ff6b6b;
-    --prvouka-color: #43e97b;
-    --text-dark: #333;
-    --white: #ffffff;
+    --red: #d42426;
+    --green: #2e8b57;
+    --gold: #f1c40f;
+    --snow: #f0f8ff;
+    --text: #2c3e50;
+    --bg: #eef2f3;
 }
 
 body {
     font-family: 'Fredoka', sans-serif;
-    background-color: var(--bg-color);
+    background: var(--bg);
     margin: 0;
     display: flex;
     justify-content: center;
@@ -18,120 +18,189 @@ body {
 
 .app-container {
     width: 100%;
-    max-width: 800px;
-    background: var(--white);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 900px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     border-radius: 20px;
     margin: 20px;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dekorace */
+.app-container::before {
+    content: "❄ ❄ ❄";
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #add8e6;
+    font-size: 2rem;
+    opacity: 0.5;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
     border-bottom: 2px solid #eee;
     padding-bottom: 15px;
     margin-bottom: 20px;
 }
 
-h1 { color: var(--text-dark); margin: 0; font-size: 1.8rem; }
-h2 { color: #555; }
+h1 { color: var(--red); margin: 0; }
+h2 { color: var(--green); }
+h3 { color: var(--text); margin-top: 0; }
 
-.score-board {
-    font-size: 1.2rem;
-    color: #666;
+.btn-back {
+    background: #ddd;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 /* Navigace */
-.main-menu {
+.menu-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
-    margin-bottom: 30px;
+    margin-top: 20px;
 }
 
-.btn-nav {
+.btn-menu {
     border: none;
-    padding: 15px;
+    padding: 30px;
     border-radius: 15px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: white;
     cursor: pointer;
     transition: transform 0.2s;
     font-family: inherit;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+.btn-menu span { font-size: 2rem; }
+.btn-menu:hover { transform: scale(1.03); }
 
-.btn-nav:hover { transform: scale(1.05); }
-.btn-nav.math { background: var(--math-color); }
-.btn-nav.czech { background: var(--czech-color); }
-.btn-nav.prvouka { background: var(--prvouka-color); }
+.cj { background: linear-gradient(135deg, #ff9a9e, #fecfef); color: #c0392b; }
+.mat { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: #8e44ad; }
+.prv { background: linear-gradient(135deg, #84fab0, #8fd3f4); color: #16a085; }
+.tv { background: linear-gradient(135deg, #fccb90, #d57eeb); color: #d35400; }
 
-/* Herní plochy */
-.game-section { text-align: center; }
+/* Obrazovky */
 .hidden { display: none; }
+.active { display: block; animation: fadeIn 0.5s; }
 
-.question-box {
-    background: #f9f9f9;
-    border: 3px dashed #ddd;
-    border-radius: 15px;
-    padding: 30px;
-    font-size: 2.5rem;
-    margin: 20px 0;
-    font-weight: bold;
-    color: var(--text-dark);
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-.options-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.btn-option {
-    background: white;
-    border: 2px solid #ddd;
+/* Komponenty úloh */
+.story-box {
+    background: #fff8e1;
     padding: 20px;
-    font-size: 1.5rem;
-    border-radius: 12px;
+    border-radius: 15px;
+    border-left: 5px solid var(--gold);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.task-box {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+.options { display: flex; gap: 10px; flex-wrap: wrap; }
+.options button {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 10px;
+    font-size: 1rem;
     cursor: pointer;
     font-family: inherit;
-    transition: all 0.2s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.options button.correct { background: #d4edda; border-color: #28a745; }
+.options button.wrong { background: #f8d7da; border-color: #dc3545; }
+
+/* Matematika Input */
+.input-group { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
+input[type="number"] {
+    padding: 10px;
+    font-size: 1.5rem;
+    width: 80px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    text-align: center;
 }
 
-.btn-option:hover {
-    background: #eef;
-    border-color: #ccf;
-    transform: translateY(-2px);
+/* Geometrie */
+.geo-canvas {
+    height: 200px;
+    background: white;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.geo-controls { display: flex; gap: 10px; flex-wrap: wrap; }
+.shape-btn { padding: 8px 15px; cursor: pointer; border: none; border-radius: 5px; color: white; }
+.shape-btn.square { background: #3498db; }
+.shape-btn.triangle { background: #e74c3c; }
+.shape-btn.circle { background: #f1c40f; color: black; }
+.clear-btn { background: #95a5a6; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer;}
+
+.geo-shape { position: absolute; cursor: grab; }
+
+/* Prvouka Zóny */
+.zones { display: flex; gap: 20px; margin-top: 20px; }
+.zone { 
+    flex: 1; height: 100px; border: 3px dashed #ccc; 
+    border-radius: 10px; display: flex; align-items: center; 
+    justify-content: center; font-weight: bold; color: #aaa;
+    transition: background 0.3s;
+}
+.item { 
+    display: inline-block; padding: 10px 20px; 
+    background: white; border: 2px solid var(--text); 
+    border-radius: 20px; margin: 5px; cursor: pointer; 
+}
+.item.selected { background: var(--gold); }
+
+/* Tělocvik Karty */
+.tv-card-container { display: flex; justify-content: center; }
+.tv-card {
+    background: white;
+    border: 3px solid var(--green);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+.tv-card .icon { font-size: 5rem; margin: 20px 0; }
+.tv-card button {
+    background: var(--green); color: white; border: none;
+    padding: 15px 30px; font-size: 1.2rem; border-radius: 50px; cursor: pointer;
 }
 
 /* Zpětná vazba */
-.feedback {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    animation: popIn 0.3s ease;
-}
-.feedback.correct { background: #d4edda; color: #155724; }
-.feedback.wrong { background: #f8d7da; color: #721c24; }
+.feedback { margin-top: 10px; font-weight: bold; font-size: 1.2rem; }
+.correct-text { color: var(--green); }
+.wrong-text { color: var(--red); }
+.small-hint { font-size: 0.8rem; color: #888; font-style: italic; }
 
-.mascot { font-size: 5rem; text-align: center; margin-top: 30px; }
-
-@keyframes popIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* Responsivita pro mobily */
 @media (max-width: 600px) {
-    .main-menu { grid-template-columns: 1fr; }
-    .options-grid { grid-template-columns: 1fr; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .zones { flex-direction: column; }
 }

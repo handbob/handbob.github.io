@@ -1,138 +1,140 @@
 const app = {
-    score: 0,
-    currentSubject: null,
+    selectedItem: null,
 
-    // Databáze pro češtinu (RVP 1. třída - jednoduchá slova)
-    czechData: [
-        { word: "KO_KA", answer: "Č", options: ["Č", "C", "Š", "S"] },
-        { word: "_ES", answer: "P", options: ["B", "P", "D", "T"] },
-        { word: "MÁM_", answer: "A", options: ["A", "Á", "E", "I"] },
-        { word: "ŠKO_A", answer: "L", options: ["L", "R", "N", "M"] },
-        { word: "AUTO_US", answer: "B", options: ["P", "B", "D", "T"] }
-    ],
-
-    // Databáze pro prvouku
-    prvoukaData: [
-        { q: "Které zvíře štěká?", answer: "Pes", options: ["Pes", "Kočka", "Kráva", "Had"] },
-        { q: "Kdy padá sníh?", answer: "V zimě", options: ["V létě", "Na jaře", "V zimě", "Na podzim"] },
-        { q: "Co je zelené?", answer: "Tráva", options: ["Slunce", "Tráva", "Nebe", "Voda"] },
-        { q: "Čím jíme polévku?", answer: "Lžící", options: ["Vidličkou", "Nožem", "Lžící", "Rukou"] }
-    ],
-
-    // Inicializace
-    init: function() {
-        this.updateScore(0);
-    },
-
-    // Přepínání předmětů
-    loadSubject: function(subject) {
-        this.currentSubject = subject;
+    // Přepínání obrazovek
+    goto: function(screenId) {
+        document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.screen').forEach(el => el.classList.add('hidden'));
         
-        // Skrytí všech sekcí
-        document.querySelectorAll('.game-section, #welcome-screen').forEach(el => el.classList.add('hidden'));
-        document.getElementById('feedback').classList.add('hidden');
-
-        // Zobrazení vybrané sekce a generování nové úlohy
-        if (subject === 'math') {
-            document.getElementById('math-section').classList.remove('hidden');
-            this.generateMath();
-        } else if (subject === 'czech') {
-            document.getElementById('czech-section').classList.remove('hidden');
-            this.generateCzech();
-        } else if (subject === 'prvouka') {
-            document.getElementById('prvouka-section').classList.remove('hidden');
-            this.generatePrvouka();
-        }
+        const target = document.getElementById(screenId);
+        target.classList.remove('hidden');
+        target.classList.add('active');
+        
+        window.scrollTo(0, 0);
     },
 
-    // 1. MATEMATIKA: Generátor sčítání/odčítání do 20
-    generateMath: function() {
-        const isAddition = Math.random() > 0.5;
-        let a, b, result, operator;
-
-        if (isAddition) {
-            // Sčítání do 20
-            a = Math.floor(Math.random() * 10) + 1;
-            b = Math.floor(Math.random() * (20 - a)) + 1;
-            result = a + b;
-            operator = "+";
+    // 1. ČESKÝ JAZYK: Kontrola tlačítek
+    checkCJ: function(btn, isCorrect) {
+        if (isCorrect) {
+            btn.classList.add('correct');
+            btn.textContent += " ✅";
         } else {
-            // Odčítání (výsledek nesmí být záporný)
-            a = Math.floor(Math.random() * 19) + 1;
-            b = Math.floor(Math.random() * a);
-            result = a - b;
-            operator = "-";
+            btn.classList.add('wrong');
+            btn.textContent += " ❌";
         }
+        btn.disabled = true; // Zamezí vícenásobnému kliknutí
+    },
 
-        document.getElementById('math-q').textContent = `${a} ${operator} ${b}`;
+    // 2. MATEMATIKA: Kontrola příkladu
+    checkMath: function(id, correctAnswer) {
+        const input = document.getElementById(`math-inp-${id}`);
+        const feedback = document.getElementById(`math-fb-${id}`);
+        const val = parseInt(input.value);
+
+        if (val === correctAnswer) {
+            feedback.innerHTML = "<span class='correct-text'>Výborně! Správně je 7. 🎉</span>";
+            input.style.borderColor = "green";
+        } else {
+            feedback.innerHTML = "<span class='wrong-text'>Zkus to znovu. 🤔</span>";
+            input.style.borderColor = "red";
+        }
+    },
+
+    // 2. MATEMATIKA: Geometrie - přidávání tvarů
+    addShape: function(type) {
+        const canvas = document.getElementById('geo-canvas');
+        const shape = document.createElement('div');
+        shape.className = 'geo-shape';
         
-        // Generování 4 možností (1 správná, 3 špatné)
-        let options = [result];
-        while (options.length < 4) {
-            let wrong = Math.floor(Math.random() * 20);
-            if (!options.includes(wrong) && wrong !== result) options.push(wrong);
+        // Náhodná pozice
+        const x = Math.floor(Math.random() * (canvas.offsetWidth - 50));
+        const y = Math.floor(Math.random() * (canvas.offsetHeight - 50));
+        
+        shape.style.left = x + 'px';
+        shape.style.top = y + 'px';
+
+        // Styly tvarů
+        if (type === 'square') {
+            shape.style.width = '50px';
+            shape.style.height = '50px';
+            shape.style.background = '#3498db';
+        } else if (type === 'circle') {
+            shape.style.width = '50px';
+            shape.style.height = '50px';
+            shape.style.borderRadius = '50%';
+            shape.style.background = '#f1c40f';
+        } else if (type === 'triangle') {
+            shape.style.width = '0';
+            shape.style.height = '0';
+            shape.style.borderLeft = '25px solid transparent';
+            shape.style.borderRight = '25px solid transparent';
+            shape.style.borderBottom = '50px solid #e74c3c';
+            shape.style.background = 'transparent';
         }
-        this.renderOptions('math-options', options.sort(() => Math.random() - 0.5), result);
+
+        canvas.appendChild(shape);
     },
 
-    // 2. ČEŠTINA: Výběr náhodného slova
-    generateCzech: function() {
-        const item = this.czechData[Math.floor(Math.random() * this.czechData.length)];
-        document.getElementById('czech-word').textContent = item.word;
-        this.renderOptions('czech-options', item.options, item.answer);
+    clearCanvas: function() {
+        document.getElementById('geo-canvas').innerHTML = '';
     },
 
-    // 3. PRVOUKA: Výběr náhodné otázky
-    generatePrvouka: function() {
-        const item = this.prvoukaData[Math.floor(Math.random() * this.prvoukaData.length)];
-        document.getElementById('prvouka-q').textContent = item.q;
-        this.renderOptions('prvouka-options', item.options, item.answer);
-    },
+    // 3. PRVOUKA: Třídění (zjednodušená logika pro klikání)
+    // Inicializace klikacích prvků
+    initPrvouka: function() {
+        const items = document.querySelectorAll('.item');
+        const homeZone = document.querySelector('.home-zone');
+        const forestZone = document.querySelector('.forest-zone');
 
-    // Vykreslení tlačítek
-    renderOptions: function(elementId, options, correctAnswer) {
-        const container = document.getElementById(elementId);
-        container.innerHTML = ''; // Vyčistit staré
-
-        options.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'btn-option';
-            btn.textContent = opt;
-            btn.onclick = () => this.checkAnswer(opt, correctAnswer);
-            container.appendChild(btn);
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                // Odznačit ostatní
+                items.forEach(i => i.classList.remove('selected'));
+                item.classList.add('selected');
+                app.selectedItem = item;
+            });
         });
+
+        homeZone.addEventListener('click', () => app.moveItem(homeZone, ['item1', 'item3'])); // TV, Postel
+        forestZone.addEventListener('click', () => app.moveItem(forestZone, ['item2', 'item4'])); // Krmelec, Jehličí
     },
 
-    // Kontrola odpovědi
-    checkAnswer: function(userAnswer, correctAnswer) {
-        const feedbackEl = document.getElementById('feedback');
-        feedbackEl.classList.remove('hidden', 'correct', 'wrong');
-
-        if (String(userAnswer) === String(correctAnswer)) {
-            feedbackEl.textContent = "Výborně! 🎉 Správná odpověď.";
-            feedbackEl.classList.add('correct');
-            this.updateScore(10);
-            
-            // Po chvilce generovat novou otázku
-            setTimeout(() => {
-                feedbackEl.classList.add('hidden');
-                if (this.currentSubject === 'math') this.generateMath();
-                if (this.currentSubject === 'czech') this.generateCzech();
-                if (this.currentSubject === 'prvouka') this.generatePrvouka();
-            }, 1500);
+    moveItem: function(zone, correctIds) {
+        if (!app.selectedItem) return;
+        
+        const id = app.selectedItem.id;
+        if (correctIds.includes(id)) {
+            zone.appendChild(app.selectedItem);
+            app.selectedItem.classList.remove('selected');
+            app.selectedItem.style.background = "#d4edda"; // Zelená
+            app.selectedItem.style.cursor = "default";
+            // Zrušit event listenery (klonováním)
+            const newItem = app.selectedItem.cloneNode(true);
+            app.selectedItem.parentNode.replaceChild(newItem, app.selectedItem);
+            app.selectedItem = null;
         } else {
-            feedbackEl.textContent = "Zkus to znovu. 😔";
-            feedbackEl.classList.add('wrong');
-            this.updateScore(-5);
+            alert("To sem asi nepatří... zkus to jinde! 🤔");
         }
     },
 
-    updateScore: function(points) {
-        this.score += points;
-        if (this.score < 0) this.score = 0;
-        document.getElementById('score').textContent = this.score;
+    msg: function(text, type) {
+        const el = document.getElementById('prv-msg');
+        el.textContent = text;
+        el.className = 'feedback ' + (type === 'correct' ? 'correct-text' : 'wrong-text');
+    },
+
+    // 4. TĚLOCVIK: Posouvání karet
+    nextCard: function(cardId) {
+        document.querySelectorAll('.tv-card').forEach(c => c.classList.add('hidden'));
+        document.querySelectorAll('.tv-card').forEach(c => c.classList.remove('active-card'));
+        
+        const target = document.getElementById(`card-${cardId}`);
+        target.classList.remove('hidden');
+        target.classList.add('active-card');
     }
 };
 
-// Spuštění aplikace
-app.init();
+// Spuštění po načtení
+document.addEventListener('DOMContentLoaded', () => {
+    app.initPrvouka();
+});

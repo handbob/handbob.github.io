@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Školák Hrou - Interaktivní Výuka</title>
+    <title>Projektový den: Pohádkové Vánoce</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -11,57 +11,150 @@
 
     <div class="app-container">
         <header>
-            <h1>🎓 Školák Hrou</h1>
-            <div class="score-board">
-                <span>Body: <b id="score">0</b></span>
-                <span>Úroveň: <b id="level">1. třída</b></span>
+            <h1>🎄 Pohádkové Vánoce</h1>
+            <div class="progress-bar">
+                <div id="progress-fill"></div>
             </div>
         </header>
 
-        <nav class="main-menu">
-            <button onclick="app.loadSubject('math')" class="btn-nav math">🧮 Matematika</button>
-            <button onclick="app.loadSubject('czech')" class="btn-nav czech">📖 Český Jazyk</button>
-            <button onclick="app.loadSubject('prvouka')" class="btn-nav prvouka">🌿 Prvouka</button>
+        <nav id="main-menu" class="screen active">
+            <h2>Vyber si hodinu:</h2>
+            <div class="menu-grid">
+                <button onclick="app.goto('cj')" class="btn-menu cj">
+                    <span>📖</span> 1. Český Jazyk
+                </button>
+                <button onclick="app.goto('mat')" class="btn-menu mat">
+                    <span>🔢</span> 2. Matematika
+                </button>
+                <button onclick="app.goto('prv')" class="btn-menu prv">
+                    <span>🏡</span> 3. Prvouka
+                </button>
+                <button onclick="app.goto('tv')" class="btn-menu tv">
+                    <span>🏃</span> 4. Tělocvik
+                </button>
+            </div>
+            <div class="mascot">🎅</div>
         </nav>
 
-        <main id="game-area">
+        <section id="cj" class="screen hidden">
+            <button class="btn-back" onclick="app.goto('main-menu')">⬅ Zpět</button>
+            <h2>📖 Český Jazyk: Skřítkův příběh</h2>
             
-            <section id="welcome-screen" class="active-section">
-                <h2>Vítej ve škole!</h2>
-                <p>Vyber si předmět nahoře a začni se učit hrou.</p>
-                <div class="mascot">🦉</div>
-            </section>
+            <div class="story-box">
+                <h3>Skřítkův vánoční domov</h3>
+                <p>Byl jednou jeden malý skřítek jménem Větvička. Blížily se Vánoce a Větvička byl smutný. Neměl totiž svůj domov. „V jeskyni je tma,“ fňukal, „a pod kamenem je zima.“ Vydal se tedy hledat místo, kde by mu bylo dobře. Cestou potkal veverku, které pomohl najít oříšek, a jelena, kterému vymotal parohy z křoví. Nakonec došel ke krmelci. „Tady je seno a voní to tu lesem!“ zaradoval se. Zvířátka se k němu přitulila a Větvička pochopil, že domov je tam, kde máš kamarády.</p>
+            </div>
 
-            <section id="math-section" class="game-section hidden">
-                <h2>Počítáme do 20</h2>
-                <div class="question-box math-display">
-                    <span id="math-q">5 + 5</span> = ?
+            <div class="task-box">
+                <h3>Úkol 1: Kdo pomohl skřítkovi?</h3>
+                <div class="options" id="cj-q1">
+                    <button onclick="app.checkCJ(this, false)">Vlk</button>
+                    <button onclick="app.checkCJ(this, true)">Veverka</button>
+                    <button onclick="app.checkCJ(this, false)">Medvěd</button>
+                    <button onclick="app.checkCJ(this, true)">Jelen</button>
                 </div>
-                <div class="options-grid" id="math-options">
-                    </div>
-            </section>
+            </div>
 
-            <section id="czech-section" class="game-section hidden">
-                <h2>Doplň písmenko</h2>
-                <div class="question-box czech-display">
-                    <span id="czech-word">KO_KA</span>
+            <div class="task-box">
+                <h3>Úkol 2: Najdi rým ke slovu "Hvězdička"</h3>
+                <div class="options">
+                    <button onclick="app.checkCJ(this, false)">Stromek</button>
+                    <button onclick="app.checkCJ(this, true)">Chvilička</button>
+                    <button onclick="app.checkCJ(this, false)">Dárek</button>
+                    <button onclick="app.checkCJ(this, true)">Rolnička</button>
                 </div>
-                <p>Které písmeno chybí?</p>
-                <div class="options-grid" id="czech-options">
-                    </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="prvouka-section" class="game-section hidden">
-                <h2>Svět kolem nás</h2>
-                <div class="question-box prvouka-display">
-                    <p id="prvouka-q">Kdy padá listí?</p>
+        <section id="mat" class="screen hidden">
+            <button class="btn-back" onclick="app.goto('main-menu')">⬅ Zpět</button>
+            <h2>🔢 Matematika: Počítání v lese</h2>
+
+            <div class="task-box">
+                <h3>Příběh 1: Ozdoby</h3>
+                <p>Skřítek měl <b>12</b> ozdob. Po cestě <b>5</b> daroval. Kolik mu zbylo?</p>
+                <div class="input-group">
+                    <input type="number" id="math-inp-1" placeholder="?">
+                    <button onclick="app.checkMath(1, 7)">Zkontrolovat</button>
                 </div>
-                <div class="options-grid" id="prvouka-options">
-                    </div>
-            </section>
+                <div id="math-fb-1" class="feedback"></div>
+            </div>
 
-            <div id="feedback" class="feedback hidden"></div>
-        </main>
+            <div class="task-box">
+                <h3>Geometrie: Stavíme domeček</h3>
+                <p>Klikni na tvary a postav domeček!</p>
+                <div class="geo-canvas" id="geo-canvas">
+                    </div>
+                <div class="geo-controls">
+                    <button class="shape-btn square" onclick="app.addShape('square')">⬜ Čtverec</button>
+                    <button class="shape-btn triangle" onclick="app.addShape('triangle')">🔺 Trojúhelník</button>
+                    <button class="shape-btn circle" onclick="app.addShape('circle')">🔴 Kruh</button>
+                    <button onclick="app.clearCanvas()" class="clear-btn">Vymazat</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="prv" class="screen hidden">
+            <button class="btn-back" onclick="app.goto('main-menu')">⬅ Zpět</button>
+            <h2>🏡 Prvouka: Můj domov vs. Les</h2>
+
+            <div class="task-box">
+                <h3>Co kam patří?</h3>
+                <p>Rozděl věci na to, co máme <b>DOMA</b> a co je v <b>LESE</b>.</p>
+                
+                <div class="sorting-game">
+                    <div class="item" draggable="true" id="item1">Televize</div>
+                    <div class="item" draggable="true" id="item2">Krmelec</div>
+                    <div class="item" draggable="true" id="item3">Postel</div>
+                    <div class="item" draggable="true" id="item4">Jehličí</div>
+                </div>
+
+                <div class="zones">
+                    <div class="zone home-zone">🏠 Náš Dům</div>
+                    <div class="zone forest-zone">🌲 Les</div>
+                </div>
+                <p class="small-hint">*(Pro zjednodušení na tabletu: Klikni na slovo a pak na zónu)*</p>
+            </div>
+
+            <div class="task-box">
+                <h3>Kde by skřítek bydlel u nás?</h3>
+                <div class="options">
+                    <button onclick="app.msg('Na silnici je nebezpečno!', 'wrong')">Na silnici</button>
+                    <button onclick="app.msg('V parku je krásně!', 'correct')">V parku</button>
+                    <button onclick="app.msg('V obchodě je moc lidí.', 'wrong')">V obchodě</button>
+                </div>
+                <div id="prv-msg" class="feedback"></div>
+            </div>
+        </section>
+
+        <section id="tv" class="screen hidden">
+            <button class="btn-back" onclick="app.goto('main-menu')">⬅ Zpět</button>
+            <h2>🏃 Tělocvik: Hýbeme se se zvířátky</h2>
+            
+            <div class="tv-card-container">
+                <div class="tv-card active-card" id="card-1">
+                    <h3>1. Rozcvička</h3>
+                    <div class="icon">🦌</div>
+                    <p>Skákej jako srnka! (Vysoká kolena)</p>
+                    <button onclick="app.nextCard(2)">Další cvik ➡</button>
+                </div>
+
+                <div class="tv-card hidden" id="card-2">
+                    <h3>2. Překážková dráha</h3>
+                    <div class="icon">🌲</div>
+                    <p>Přeskoč spadlý strom! (Snožmo skok)</p>
+                    <button onclick="app.nextCard(3)">Další cvik ➡</button>
+                </div>
+
+                <div class="tv-card hidden" id="card-3">
+                    <h3>3. Relaxace</h3>
+                    <div class="icon">❄</div>
+                    <p>Jsi sněhová vločka. Pomalu padáš na zem...</p>
+                    <button onclick="app.nextCard(1)">Znovu 🔄</button>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <script src="script.js"></script>
