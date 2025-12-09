@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Školák Hrou - Interaktivní Výuka</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>🎓 Školák Hrou</h1>
+            <div class="score-board">
+                <span>Body: <b id="score">0</b></span>
+                <span>Úroveň: <b id="level">1. třída</b></span>
+            </div>
+        </header>
+
+        <nav class="main-menu">
+            <button onclick="app.loadSubject('math')" class="btn-nav math">🧮 Matematika</button>
+            <button onclick="app.loadSubject('czech')" class="btn-nav czech">📖 Český Jazyk</button>
+            <button onclick="app.loadSubject('prvouka')" class="btn-nav prvouka">🌿 Prvouka</button>
+        </nav>
+
+        <main id="game-area">
+            
+            <section id="welcome-screen" class="active-section">
+                <h2>Vítej ve škole!</h2>
+                <p>Vyber si předmět nahoře a začni se učit hrou.</p>
+                <div class="mascot">🦉</div>
+            </section>
+
+            <section id="math-section" class="game-section hidden">
+                <h2>Počítáme do 20</h2>
+                <div class="question-box math-display">
+                    <span id="math-q">5 + 5</span> = ?
+                </div>
+                <div class="options-grid" id="math-options">
+                    </div>
+            </section>
+
+            <section id="czech-section" class="game-section hidden">
+                <h2>Doplň písmenko</h2>
+                <div class="question-box czech-display">
+                    <span id="czech-word">KO_KA</span>
+                </div>
+                <p>Které písmeno chybí?</p>
+                <div class="options-grid" id="czech-options">
+                    </div>
+            </section>
+
+            <section id="prvouka-section" class="game-section hidden">
+                <h2>Svět kolem nás</h2>
+                <div class="question-box prvouka-display">
+                    <p id="prvouka-q">Kdy padá listí?</p>
+                </div>
+                <div class="options-grid" id="prvouka-options">
+                    </div>
+            </section>
+
+            <div id="feedback" class="feedback hidden"></div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

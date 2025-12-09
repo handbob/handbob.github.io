@@ -1,0 +1,137 @@
+:root {
+    --bg-color: #f0f8ff;
+    --math-color: #4facfe;
+    --czech-color: #ff6b6b;
+    --prvouka-color: #43e97b;
+    --text-dark: #333;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 800px;
+    background: var(--white);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+h1 { color: var(--text-dark); margin: 0; font-size: 1.8rem; }
+h2 { color: #555; }
+
+.score-board {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Navigace */
+.main-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-nav {
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-family: inherit;
+}
+
+.btn-nav:hover { transform: scale(1.05); }
+.btn-nav.math { background: var(--math-color); }
+.btn-nav.czech { background: var(--czech-color); }
+.btn-nav.prvouka { background: var(--prvouka-color); }
+
+/* Herní plochy */
+.game-section { text-align: center; }
+.hidden { display: none; }
+
+.question-box {
+    background: #f9f9f9;
+    border: 3px dashed #ddd;
+    border-radius: 15px;
+    padding: 30px;
+    font-size: 2.5rem;
+    margin: 20px 0;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-option {
+    background: white;
+    border: 2px solid #ddd;
+    padding: 20px;
+    font-size: 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.btn-option:hover {
+    background: #eef;
+    border-color: #ccf;
+    transform: translateY(-2px);
+}
+
+/* Zpětná vazba */
+.feedback {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    animation: popIn 0.3s ease;
+}
+.feedback.correct { background: #d4edda; color: #155724; }
+.feedback.wrong { background: #f8d7da; color: #721c24; }
+
+.mascot { font-size: 5rem; text-align: center; margin-top: 30px; }
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsivita pro mobily */
+@media (max-width: 600px) {
+    .main-menu { grid-template-columns: 1fr; }
+    .options-grid { grid-template-columns: 1fr; }
+}
